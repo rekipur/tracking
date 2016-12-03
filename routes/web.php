@@ -10,6 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+// ini adalah route
 
 Route::get('/', function () {
     return view('welcome');
