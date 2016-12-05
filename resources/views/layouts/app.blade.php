@@ -48,7 +48,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if (Auth::check())
+                            <li><a href="{{ url('/home') }}">Home</a></li>
+                        @endif
+                        @role('admin')
+                            <li><a href="{{ route('admins.index') }}">Master Data</a></li>
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->

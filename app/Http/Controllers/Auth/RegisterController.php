@@ -68,8 +68,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $pegawaiRole = Role::Where('name', 'pegawai')->first();
+        /*$pegawaiRole = Role::Where('name', 'pegawai')->first();
         $user->attachRole($pegawaiRole);
-        return $user;
+        return $user;*/
     }
 }

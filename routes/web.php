@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/about', 'MyController@showAbout');
 
-Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
+Route::group(['middleware'=>'web'],function () {
 	// Route diisi disini
-	Route::resource('authors', 'AdminController');
+	Route::group(['prefix'=>'admin', 'middleware'=>['auth','role:admin']], function () {
+		Route::resource('admins', 'AdminController');
+	});
 });

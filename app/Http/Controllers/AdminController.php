@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
@@ -11,9 +14,19 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        //
+        if ($request->ajax()) {
+            # code...
+            $user = User::all();
+            return Datatables::of($user)->make(true);
+        }
+
+        $html = $htmlBuilder
+            ->addColumn(['data' => 'name','title'=>'Nama'])
+            ->addColumn(['data' => 'email','title'=>'E-mail']);
+
+            return view('admins.index')->with(compact('html'));
     }
 
     /**
